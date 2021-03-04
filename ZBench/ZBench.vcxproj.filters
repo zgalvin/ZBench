@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="_Framework">
+      <UniqueIdentifier>{f04c9286-e219-4fb7-b306-f9717e9aba86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Do NOT modify">
+      <UniqueIdentifier>{e92ca29b-4937-4528-bd5c-8e9a35ac565c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MODIFY and ADD files here">
+      <UniqueIdentifier>{20856119-44cc-42a4-b268-b2dac0a09714}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MODIFY and ADD files here\Experiment">
+      <UniqueIdentifier>{001501c1-4a4d-4bbe-8f89-b58f874143a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MODIFY and ADD files here\Report">
+      <UniqueIdentifier>{7ec10da9-c386-4d03-9bd8-ec33d36ec1aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MODIFY and ADD files here\Benchmark">
+      <UniqueIdentifier>{63389c5a-de07-45cf-9377-879ea1067ade}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MODIFY and ADD files here\Util">
+      <UniqueIdentifier>{74cf0890-77a6-48fa-b31f-987c939862e2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\MODIFY and ADD files here</Filter>
+    </ClCompile>
+    <ClCompile Include="BenchmarkRegistry.cpp">
+      <Filter>Source Files\MODIFY and ADD files here\Benchmark</Filter>
+    </ClCompile>
+    <ClCompile Include="Reporter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Framework\__DO NOT MODIFY__">
+      <Filter>_Framework</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Framework\Framework.h">
+      <Filter>_Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Experiment.h">
+      <Filter>Source Files\MODIFY and ADD files here\Experiment</Filter>
+    </ClInclude>
+    <ClInclude Include="ArgsExperiment.h">
+      <Filter>Source Files\MODIFY and ADD files here\Experiment</Filter>
+    </ClInclude>
+    <ClInclude Include="RunExperiment.h">
+      <Filter>Source Files\MODIFY and ADD files here\Experiment</Filter>
+    </ClInclude>
+    <ClInclude Include="BenchmarkRegistry.h">
+      <Filter>Source Files\MODIFY and ADD files here\Benchmark</Filter>
+    </ClInclude>
+    <ClInclude Include="Bench.h">
+      <Filter>Source Files\MODIFY and ADD files here\Benchmark</Filter>
+    </ClInclude>
+    <ClInclude Include="Results.h">
+      <Filter>Source Files\MODIFY and ADD files here\Report</Filter>
+    </ClInclude>
+    <ClInclude Include="Reporter.h">
+      <Filter>Source Files\MODIFY and ADD files here\Report</Filter>
+    </ClInclude>
+    <ClInclude Include="ReportUtils.h">
+      <Filter>Source Files\MODIFY and ADD files here\Report</Filter>
+    </ClInclude>
+    <ClInclude Include="BenchImpls.h">
+      <Filter>Source Files\MODIFY and ADD files here\Benchmark</Filter>
+    </ClInclude>
+    <ClInclude Include="ExperimentUtil.h">
+      <Filter>Source Files\MODIFY and ADD files here\Experiment</Filter>
+    </ClInclude>
+    <ClInclude Include="PTune.h">
+      <Filter>Source Files\MODIFY and ADD files here</Filter>
+    </ClInclude>
+    <ClInclude Include="PlatformDefinitions.h">
+      <Filter>Source Files\MODIFY and ADD files here\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Source Files\MODIFY and ADD files here\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="PTuneOptions.h">
+      <Filter>Source Files\MODIFY and ADD files here\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="PTuneUtils.h">
+      <Filter>Source Files\MODIFY and ADD files here\Util</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
