@@ -1,5 +1,4 @@
-#ifndef REPORTER_H
-#define REPORTER_H
+#pragma once
 
 #include "PlatformDefinitions.h"
 WALL_WRN_PUSH
@@ -82,6 +81,3 @@ private:
 	bool first = true;
 	char pad[7] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g' };
 };
-
-#endif // !REPORT_H
-

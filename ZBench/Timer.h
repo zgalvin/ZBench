@@ -1,5 +1,4 @@
-#ifndef TIMER_H
-#define TIMER_H
+#pragma once
 
 #include "PlatformDefinitions.h"
 WALL_WRN_PUSH
@@ -50,5 +49,3 @@ private:
 	float TicksPerNano = 0.0f;
 	char pad[4];
 };
-
-#endif

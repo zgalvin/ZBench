@@ -1,5 +1,4 @@
-#ifndef ZBENCH_H
-#define ZBENCH_H
+#pragma once
 
 #include "BenchmarkRegistry.h"
 #include "Bench.h"
@@ -33,5 +32,3 @@ int main(int argc, const char* argv[])	\
 //TODO: Static assert that FixtureClass is default constructable?
 #define BENCH_ARGS_FIX(MyName, MyFunc, FixtureClass, ArgsVec) \
 	void * MyName##_Test = BenchmarkRegistry::AddBench_AF(NAME_S(MyName##_Test), MyFunc, ArgsVec);
-
-#endif

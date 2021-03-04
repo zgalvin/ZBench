@@ -1,5 +1,4 @@
-#ifndef ARGS_EXPERIMENT_H
-#define ARGS_EXPERIMENT_H
+#pragma once
 
 #include <chrono>
 #include <vector>
@@ -102,13 +101,6 @@ public:
 
 	long long RunTrial(const ArgT& arg)
 	{
-		//std::chrono::high_resolution_clock clock;
-		//m_fix.Setup(arg);
-		//auto const tic = clock.now();
-		//m_func(arg, m_fix);
-		//auto const toc = clock.now();
-		//m_fix.Teardown();
-		//return (toc - tic).count();
 		m_fix.Setup(arg);
 		timer.Tic();
 		m_func(arg, m_fix);
@@ -117,5 +109,3 @@ public:
 		return time;
 	}
 };
-
-#endif // ! ARGS_EXPERIMENT_H

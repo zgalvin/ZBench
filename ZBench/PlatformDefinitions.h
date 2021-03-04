@@ -1,3 +1,5 @@
+#pragma once
+
 #define WALL_WRN_PUSH				  \
 	__pragma(warning( push ))		  \
 	__pragma(warning(disable : 4005)) \

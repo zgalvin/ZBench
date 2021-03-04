@@ -1,5 +1,4 @@
-#ifndef BENCH_IMPLS_H
-#define BENCH_IMPLS_H
+#pragma once
 
 #include "Bench.h"
 #include "Results.h"
@@ -98,5 +97,3 @@ private:
 	std::vector <ArgT> m_args;
 	std::vector<Result> m_results;
 };
-
-#endif // !BENCH_IMPLS_H

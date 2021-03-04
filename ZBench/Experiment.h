@@ -1,5 +1,4 @@
-#ifndef  EXPERIMENT_H
-#define EXPERIMENT_H
+#pragma once
 
 #include "PlatformDefinitions.h"
 WALL_WRN_PUSH
@@ -70,11 +69,6 @@ public:
 
 	long long RunTrial()
 	{
-		//std::chrono::high_resolution_clock clock;
-		//auto const tic = clock.now();
-		//m_func();
-		//auto const toc = clock.now();
-		//return (toc - tic).count();
 		timer.Tic();
 		m_func();
 		return timer.Toc();
@@ -103,19 +97,12 @@ public:
 
 	void Run(Result & result)
 	{
-		//auto f = [&] {return this->RunTrial(); };
 		auto const f = std::bind(&FixtureExperiment::RunTrial, this);
 		ExperimentUtil::RunExperiment(f, result);
 	}
 
 	long long RunTrial()
 	{
-		//m_fix.Setup();
-		//auto const tic = clock.now();
-		//m_func(m_fix);
-		//auto const toc = clock.now();
-		//m_fix.Teardown();
-		//return (toc - tic).count();
 		m_fix.Setup();
 		timer.Tic();
 		m_func();
@@ -124,6 +111,3 @@ public:
 		return time;
 	}
 };
-
-
-#endif // ! EXPERIMENT_H

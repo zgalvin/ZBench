@@ -1,5 +1,4 @@
-#ifndef RESULT_H
-#define RESULT_H
+#pragma once
 
 #include "PlatformDefinitions.h"
 WALL_WRN_PUSH
@@ -49,5 +48,3 @@ struct Result
 
 	const static int NAME_LENGTH = 20;
 };
-
-#endif // !RESULTS_H

@@ -1,5 +1,4 @@
-#ifndef RUN_EXPERIMENT_H
-#define RUN_EXPERIMENT_H
+#pragma once
 
 #include <vector>
 #include <functional>
@@ -12,5 +11,3 @@
 //		results.push_back(f());
 //	}
 //}
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef EXPERIMENT_REGISTRY_H
-#define EXPERIMENT_REGISTRY_H
+#pragma once
 
 #include "PlatformDefinitions.h"
 WALL_WRN_PUSH
@@ -74,5 +73,3 @@ private:
 
 	std::vector <std::shared_ptr<Bench>> m_benchmarks;
 };
-
-#endif

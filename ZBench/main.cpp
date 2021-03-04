@@ -1,6 +1,3 @@
-//----------------------------------------------------------------------------
-// Copyright 2019, Ed Keenan, all rights reserved.
-//----------------------------------------------------------------------------
 #include "PlatformDefinitions.h"
 WALL_WRN_PUSH
 #include <chrono>

@@ -1,5 +1,4 @@
-#ifndef EXPERIMENT_UTIL_H
-#define EXPERIMENT_UTIL_H
+#pragma once
 
 #include <functional>
 #include "Results.h"
@@ -82,5 +81,3 @@ private:
 		return runs_needed;
 	}
 };
-
-#endif

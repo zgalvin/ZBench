@@ -1,5 +1,4 @@
-#ifndef ZBENCH_OPTIONS_H
-#define ZBENCH_OPTIONS_H
+#pragma once
 
 #include <stdio.h>
 #include "Reporter.h"
@@ -14,5 +13,3 @@ struct ZBenchOptions
 
 	}
 };
-
-#endif // !ZBENCH_OPTIONS_H

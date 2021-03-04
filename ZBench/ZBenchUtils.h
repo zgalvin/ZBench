@@ -1,5 +1,4 @@
-#ifndef ZBENCH_UTILS
-#define ZBENCH_UTILS
+#pragma once
 
 #include <string.h>
 #include "ZBenchOptions.h"
@@ -28,5 +27,3 @@ static ZBenchOptions ParseArgs(const int argc, const char* const argv[])
 
 	return options;
 }
-
-#endif

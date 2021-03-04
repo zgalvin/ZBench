@@ -1,5 +1,4 @@
-#ifndef BENCH_H
-#define BENCH_H
+#pragma once
 
 #include <memory>
 #include "Experiment.h"
@@ -58,5 +57,3 @@ public:
 private:
 	const char* m_name;
 };
-
-#endif
