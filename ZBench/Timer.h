@@ -18,7 +18,7 @@ public:
 		LARGE_INTEGER freq;
 		QueryPerformanceFrequency(&freq);
 		TicksPerNano = 1000000000.0f / static_cast<float>(freq.QuadPart);
-		auto my_period = (double)std::chrono::high_resolution_clock::period::num / (double)std::chrono::high_resolution_clock::period::den;
+		constexpr auto my_period = (double)std::chrono::high_resolution_clock::period::num / (double)std::chrono::high_resolution_clock::period::den;
 		(my_period);
 	}
 

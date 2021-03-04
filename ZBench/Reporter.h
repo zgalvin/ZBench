@@ -16,6 +16,7 @@ public:
 	virtual void BeginReport() {};
 	virtual void ProcessResult(const Result& result) = 0;
 	virtual void EndReport() {};
+	virtual ~Reporter() = default;
 
 	enum class Type
 	{

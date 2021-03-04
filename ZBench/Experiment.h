@@ -19,7 +19,7 @@ class Experiment
 {
 public:
 	Experiment() = default;
-	~Experiment() = default;
+	virtual ~Experiment() = default;
 	Experiment(const Experiment&) = delete;
 	Experiment(Experiment&&) = delete;
 	Experiment& operator= (const Experiment&) = delete;

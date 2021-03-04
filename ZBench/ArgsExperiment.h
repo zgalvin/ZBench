@@ -15,7 +15,7 @@ class ArgsExperiment
 {
 public:
 	ArgsExperiment() = default;
-	~ArgsExperiment() = default;
+	virtual ~ArgsExperiment() = default;
 	ArgsExperiment(const ArgsExperiment&) = delete;
 	ArgsExperiment(ArgsExperiment&&) = delete;
 	ArgsExperiment& operator= (const ArgsExperiment&) = delete;
