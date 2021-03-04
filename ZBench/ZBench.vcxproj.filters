@@ -77,7 +77,7 @@
     <ClInclude Include="ExperimentUtil.h">
       <Filter>Source Files\MODIFY and ADD files here\Experiment</Filter>
     </ClInclude>
-    <ClInclude Include="PTune.h">
+    <ClInclude Include="ZBench.h">
       <Filter>Source Files\MODIFY and ADD files here</Filter>
     </ClInclude>
     <ClInclude Include="PlatformDefinitions.h">
@@ -86,10 +86,10 @@
     <ClInclude Include="Timer.h">
       <Filter>Source Files\MODIFY and ADD files here\Util</Filter>
     </ClInclude>
-    <ClInclude Include="PTuneOptions.h">
+    <ClInclude Include="ZBenchOptions.h">
       <Filter>Source Files\MODIFY and ADD files here\Util</Filter>
     </ClInclude>
-    <ClInclude Include="PTuneUtils.h">
+    <ClInclude Include="ZBenchUtils.h">
       <Filter>Source Files\MODIFY and ADD files here\Util</Filter>
     </ClInclude>
   </ItemGroup>
