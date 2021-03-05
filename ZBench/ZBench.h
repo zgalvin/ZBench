@@ -6,9 +6,9 @@
 #include "ZBenchUtils.h"
 
 #define ZBENCH_MAIN									\
-int main(int argc, const char* argv[])	\
+int main(const int argc, const char* const argv[])	\
 {													\
-	ZBenchOptions options = ParseArgs(argc, argv);	\
+	const ZBenchOptions options = ParseArgs(argc, argv);	\
 	BenchmarkRegistry::Run(options);				\
 }
 

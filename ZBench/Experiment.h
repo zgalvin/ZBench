@@ -44,17 +44,14 @@ public:
 class SimpleExperiment : public Experiment
 {
 private:
-	// 	char pad[4]; // Padding for after base class
 	std::function<void()> m_func;
 	Timer timer;
 
 public:
 	SimpleExperiment(void(*func)()):
 		m_func(std::function<void()>(func))
-		// pad()
-	{
+	{ }
 
-	}
 	virtual ~SimpleExperiment() = default;
 	SimpleExperiment(const SimpleExperiment&) = delete;
 	SimpleExperiment(SimpleExperiment&&) = delete;
@@ -86,9 +83,8 @@ public:
 	FixtureExperiment(void(*func)(FixT&)) :
 		m_fix(),
 		m_func(std::function<void(FixT&)>(func))
-	{
+	{ }
 
-	}
 	virtual ~FixtureExperiment() = default;
 	FixtureExperiment(const FixtureExperiment&) = delete;
 	FixtureExperiment(FixtureExperiment&&) = delete;

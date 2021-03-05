@@ -27,9 +27,8 @@ public:
 	std::vector<int> data;
 };
 
-void my_function(const size_t& arg, SortFixture& fix)
+void my_function(const size_t&, SortFixture& fix)
 {
-	(arg);
 	std::sort(fix.data.begin(), fix.data.end());
 }
 
@@ -68,9 +67,8 @@ void select_sort(const size_t& arg, SortFixture& fix)
 }
 
 // http://www.bfilipek.com/2014/12/top-5-beautiful-c-std-algorithms.html
-void insert_sort(const size_t& arg, SortFixture& fix)
+void insert_sort(const size_t&, SortFixture& fix)
 {
-	(arg);
 	for (auto i = std::begin(fix.data); i != std::end(fix.data); ++i)
 	{
 		std::rotate(std::upper_bound(std::begin(fix.data), i, *i), i, std::next(i));
@@ -94,16 +92,13 @@ void QuickSort(FwdIt first, FwdIt last, Compare cmp = Compare{})
 	QuickSort(pivot, last, cmp);
 }
 
-void quick_sort(const size_t& arg, SortFixture& fix)
+void quick_sort(const size_t&, SortFixture& fix)
 {
-	(arg);
 	QuickSort(std::begin(fix.data), std::end(fix.data));
 }
 
-void std_sort(const size_t& arg, SortFixture& fix)
+void std_sort(const size_t&, SortFixture& fix)
 {
-	(arg);
-	// std::sort(fix.begin(), fix.end());
 	std::sort(std::begin(fix.data), std::end(fix.data), std::less<int64_t>());
 }
 

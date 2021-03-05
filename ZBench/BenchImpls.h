@@ -11,16 +11,14 @@ public:
 		:Bench(name),
 		m_exp(Experiment::CreateExperiment(func)),
 		m_result(name)
-	{
-	}
+	{ }
 
 	template<typename FixT>
 	SimpleBench(const char* name, void(*func)(FixT&))
 		:Bench(name),
 		m_exp(Experiment::CreateExperiment_F(func)),
 		m_result(name)
-	{
-	}
+	{ }
 
 	virtual void RunTest(Reporter& reporter) override
 	{
@@ -40,7 +38,6 @@ public:
 	virtual ~SimpleBench() = default;
 private:
 	std::shared_ptr<Experiment> m_exp;
-	// std::vector<long long> m_sampleTimes;
 	Result m_result;
 };
 
@@ -81,7 +78,7 @@ public:
 
 	virtual void Process(Reporter& reporter) override
 	{
-		for (Result & result : m_results)
+		for (const Result & result : m_results)
 		{
 			reporter.ProcessResult(result);
 		}

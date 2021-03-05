@@ -61,16 +61,13 @@ public:
 		else
 			first = false;
 
-		long long const average_time = ReportUtils::GetAverageTime(result.sample_times);
+		const long long average_time = ReportUtils::GetAverageTime(result.sample_times);
 		printf("\t{\r\n");
 		printf("\t\t\"Test Name\": \"%s\",\r\n", result.test_name.c_str());
 		printf("\t\t\"Arg\": \"%s\",\r\n", result.arg.c_str());
 		printf("\t\t\"Avg. Time (ns)\": %lld,\r\n", average_time);
 		printf("\t\t\"# iterations\": %u\r\n", (unsigned int)result.sample_times.size());
 		printf("\t}\r\n");
-
-		// printf("%-*s%*s%*s\n", cellsize, "Name", cellsize, "Avg. Time (ns)", cellsize, "# iterations");
-		// printf("%-*s%*lld%*u\n", cellsize, result.name, cellsize, average_time, cellsize, (unsigned int)result.sample_times.size());
 	}
 
 	virtual void EndReport() override

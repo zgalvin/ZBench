@@ -8,27 +8,20 @@ WALL_WRN_POP
 
 struct Result
 {
+	std::string test_name;
+	std::string arg;
+	std::vector<long long> sample_times;
+	constexpr static int NAME_LENGTH = 20;
+
 	Result(const char * const test_name_):
 		Result(test_name_, "n/a")
-	{
-
-	}
+	{ }
 
 	Result(const char* const test_name_, const char * const arg_) :
 		test_name(test_name_),
 		arg(arg_),
 		sample_times()
-	{
-	}
-
-	void PrepareForTests(const int numTests)
-	{
-		sample_times.reserve((size_t)numTests);
-	}
-
-	std::string test_name;
-	std::string arg;
-	std::vector<long long> sample_times;
+	{ }
 
 	Result(Result const&)noexcept= delete;
 	Result& operator=(Result const&) = delete;
@@ -46,5 +39,8 @@ struct Result
 		sample_times = std::move(sample_times);
 	}
 
-	const static int NAME_LENGTH = 20;
+	void PrepareForTests(const int numTests)
+	{
+		sample_times.reserve((size_t)numTests);
+	}
 };

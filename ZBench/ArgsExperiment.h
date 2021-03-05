@@ -34,8 +34,6 @@ public:
 	}
 
 	virtual void Run(const ArgT& arg, Result & result) = 0;
-
-protected:
 };
 
 template<typename ArgT>
@@ -63,11 +61,6 @@ public:
 
 	long long RunTrial(const ArgT& arg)
 	{
-		//std::chrono::high_resolution_clock clock;
-		//auto const tic = clock.now();
-		//m_func(arg);
-		//auto const toc = clock.now();
-		//return (toc - tic).count();
 		timer.Tic();
 		m_func(arg);
 		return timer.Toc();
@@ -95,7 +88,7 @@ public:
 
 	virtual void Run(const ArgT& arg, Result & result) override
 	{
-		auto f = std::bind(&FixtureArgsExperiment::RunTrial, this, arg);
+		const auto f = std::bind(&FixtureArgsExperiment::RunTrial, this, arg);
 		ExperimentUtil::RunExperiment(f, result);
 	}
 
@@ -104,7 +97,7 @@ public:
 		m_fix.Setup(arg);
 		timer.Tic();
 		m_func(arg, m_fix);
-		long long time = timer.Toc();
+		const long long time = timer.Toc();
 		m_fix.Teardown();
 		return time;
 	}

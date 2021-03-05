@@ -1,6 +1,5 @@
 #pragma once
 
-#include <stdio.h>
 #include "Reporter.h"
 
 struct ZBenchOptions
@@ -9,7 +8,5 @@ struct ZBenchOptions
 
 	ZBenchOptions():
 		reporter_type(Reporter::Type::Console)
-	{
-
-	}
+	{ }
 };

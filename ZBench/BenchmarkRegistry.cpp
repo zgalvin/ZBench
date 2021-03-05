@@ -45,9 +45,8 @@ void BenchmarkRegistry::privRun(const ZBenchOptions& options)
 {
 	std::shared_ptr<Reporter> reporter = Reporter::CreateReporter(options.reporter_type);
 	reporter->BeginReport();
-	for (auto benchmark : m_benchmarks)
+	for (auto & benchmark : m_benchmarks)
 	{
-		//benchmark->RunTest(console_reporter);
 		benchmark->RunTest(*reporter);
 	}
 	reporter->EndReport();

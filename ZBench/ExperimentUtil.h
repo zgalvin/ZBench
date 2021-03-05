@@ -24,14 +24,15 @@ public:
 		} while (NeedsMoreIterations(result, num_samples));
 	}
 
-	static bool NeedsMoreIterations(const Result& result, int & iterations_needed)
+private:
+	static bool NeedsMoreIterations(const Result& result, int& iterations_needed)
 	{
-		int num_trials = (int)result.sample_times.size();
+		const int num_trials = (int)result.sample_times.size();
 		double sample_std_dev;
 		double sample_avg;
 		ReportUtils::GetSampleStdDev(result.sample_times, sample_std_dev, sample_avg);
 
-		double interval_width = critical_val * (sample_std_dev / sqrt((double)num_trials));
+		const double interval_width = critical_val * (sample_std_dev / sqrt((double)num_trials));
 
 		if ((interval_width / sample_avg) > error_tolerance)
 		{
@@ -45,11 +46,9 @@ public:
 		}
 	}
 
-private:
 	static int GetIterationsNeeded(Result& result, const std::function<long long()>& trial)
 	{
-		//std::vector<long long> initial_times;
-		const int num_trials = 1024;
+		constexpr int num_trials = 1024;
 		result.sample_times.reserve(num_trials);
 		for (int i = 0; i < num_trials; ++i)
 		{
@@ -66,12 +65,12 @@ private:
 	static int CalcNeededRuns(const double & sample_std_dev, const double & sample_avg, const int num_initial_runs)
 	{
 		const double sqrt_est_needed = (critical_val * sample_std_dev) / (error_tolerance * sample_avg);
-		const int est_needed = (int)round(sqrt_est_needed * sqrt_est_needed);
+		const int est_needed = static_cast<int>(round(sqrt_est_needed * sqrt_est_needed));
 
 		int runs_needed = 0;
 
-		if (est_needed > (int)num_initial_runs)
-			runs_needed = est_needed - (int)num_initial_runs;
+		if (est_needed > num_initial_runs)
+			runs_needed = est_needed - num_initial_runs;
 		else
 			runs_needed = est_needed / 10;
 
