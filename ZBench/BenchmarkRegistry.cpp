@@ -38,12 +38,12 @@ BenchmarkRegistry& BenchmarkRegistry::Instance()
 
 void BenchmarkRegistry::privAddBench(const char* name, void(*func)())
 {
-	m_benchmarks.push_back(Bench::CreateBench(name, func));
+	m_benchmarks.push_back(CreateBench(name, func));
 }
 
 void BenchmarkRegistry::privRun(const ZBenchOptions& options)
 {
-	std::shared_ptr<Reporter> reporter = Reporter::CreateReporter(options.reporter_type);
+	std::unique_ptr<Reporter> reporter = Reporter::CreateReporter(options.reporter_type);
 	reporter->BeginReport();
 	for (auto & benchmark : m_benchmarks)
 	{

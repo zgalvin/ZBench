@@ -66,10 +66,10 @@ private:
 	template<typename ArgT, typename FixT>
 	void privAddBench_AF(const char* name, void(*func)(const ArgT&, FixT&), std::vector<ArgT>&& args_vec)
 	{
-		m_benchmarks.push_back(Bench::CreateBench_AF(name, func, std::move(args_vec)));
+		m_benchmarks.push_back(CreateBench_AF(name, func, std::move(args_vec)));
 	}
 
 	void privRun(const ZBenchOptions& options);
 
-	std::vector <std::shared_ptr<Bench>> m_benchmarks;
+	std::vector <std::unique_ptr<Bench>> m_benchmarks;
 };

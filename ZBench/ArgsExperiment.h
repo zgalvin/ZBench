@@ -21,16 +21,15 @@ public:
 	ArgsExperiment& operator= (const ArgsExperiment&) = delete;
 	ArgsExperiment& operator= (ArgsExperiment&&) = delete;
 
-	static std::shared_ptr<ArgsExperiment> CreateExperiment(void(*func)(const ArgT&))
+	static std::unique_ptr<ArgsExperiment> CreateExperiment(void(*func)(const ArgT&))
 	{
-		auto ret = std::make_shared<SimpleArgsExperiment<ArgT>>(func);
-		return std::static_pointer_cast<ArgsExperiment>(ret);
+		return std::make_unique<SimpleArgsExperiment<ArgT>>(func);
 	}
 
 	template<typename FixT>
-	static std::shared_ptr<ArgsExperiment> CreateExperiment_F(void(*func)(const ArgT&, FixT&))
+	static std::unique_ptr<ArgsExperiment> CreateExperiment_F(void(*func)(const ArgT&, FixT&))
 	{
-		return std::make_shared<FixtureArgsExperiment<ArgT,FixT>>(func);
+		return std::make_unique<FixtureArgsExperiment<ArgT,FixT>>(func);
 	}
 
 	virtual void Run(const ArgT& arg, Result & result) = 0;

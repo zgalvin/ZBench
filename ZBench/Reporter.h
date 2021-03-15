@@ -7,9 +7,6 @@ WALL_WRN_POP
 #include "Results.h"
 #include "ReportUtils.h"
 
-class ConsoleReporter;
-class JsonReporter;
-
 class Reporter
 {
 public:
@@ -25,7 +22,7 @@ public:
 		Unknown
 	};
 
-	static std::shared_ptr<Reporter> CreateReporter(const Type type);
+	static std::unique_ptr<Reporter> CreateReporter(const Type type);
 };
 
 class ConsoleReporter : public Reporter
@@ -33,7 +30,7 @@ class ConsoleReporter : public Reporter
 public:
 	virtual void BeginReport() override
 	{
-		printf("%-*s%*s%*s\n", cellsize, "Name", cellsize, "Avg. Time (ns)", cellsize, "# iterations");
+		printf("%-*s%*s%*s%*s\n", cellsize, "Name", cellsize, "Avg. Time (ns)", cellsize, "Argument", cellsize, "# iterations");
 	}
 
 	virtual void ProcessResult(const Result& result) override
