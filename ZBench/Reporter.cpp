@@ -1,5 +1,8 @@
 #include "Reporter.h"
 
+namespace zbench
+{
+
 std::unique_ptr<Reporter> Reporter::CreateReporter(const Type type)
 {
 	std::unique_ptr<Reporter> retVal = std::make_unique<JsonReporter>();
@@ -11,3 +14,5 @@ std::unique_ptr<Reporter> Reporter::CreateReporter(const Type type)
 	// This shouldn't be what I do but let's default this way too
 	return std::make_unique<ConsoleReporter>();
 }
+
+} // namespace zbench

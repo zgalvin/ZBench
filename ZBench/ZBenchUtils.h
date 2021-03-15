@@ -3,6 +3,9 @@
 #include <string.h>
 #include "ZBenchOptions.h"
 
+namespace zbench
+{
+
 static bool StrMatches(const char* const str1, const char* const str2)
 {
 	return strcmp(str1, str2) == 0;
@@ -27,3 +30,5 @@ static ZBenchOptions ParseArgs(const int argc, const char* const argv[])
 
 	return options;
 }
+
+} // namespace zbench

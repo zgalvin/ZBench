@@ -5,6 +5,10 @@
 #include <functional>
 #include "ExperimentUtil.h"
 
+
+namespace zbench
+{
+
 template<typename ArgT>
 class SimpleArgsExperiment;
 template<typename ArgT, typename FixT>
@@ -29,10 +33,10 @@ public:
 	template<typename FixT>
 	static std::unique_ptr<ArgsExperiment> CreateExperiment_F(void(*func)(const ArgT&, FixT&))
 	{
-		return std::make_unique<FixtureArgsExperiment<ArgT,FixT>>(func);
+		return std::make_unique<FixtureArgsExperiment<ArgT, FixT>>(func);
 	}
 
-	virtual void Run(const ArgT& arg, Result & result) = 0;
+	virtual void Run(const ArgT& arg, Result& result) = 0;
 };
 
 template<typename ArgT>
@@ -52,7 +56,7 @@ public:
 	SimpleArgsExperiment& operator= (const SimpleArgsExperiment&) = delete;
 	SimpleArgsExperiment& operator= (SimpleArgsExperiment&&) = delete;
 
-	virtual void Run(const ArgT& arg, Result & result) override
+	virtual void Run(const ArgT& arg, Result& result) override
 	{
 		auto f = std::bind(&SimpleArgsExperiment::RunTrial, this, arg);
 		ExperimentUtil::RunExperiment(f, result);
@@ -85,7 +89,7 @@ public:
 	FixtureArgsExperiment& operator= (const FixtureArgsExperiment&) = delete;
 	FixtureArgsExperiment& operator= (FixtureArgsExperiment&&) = delete;
 
-	virtual void Run(const ArgT& arg, Result & result) override
+	virtual void Run(const ArgT& arg, Result& result) override
 	{
 		const auto f = std::bind(&FixtureArgsExperiment::RunTrial, this, arg);
 		ExperimentUtil::RunExperiment(f, result);
@@ -101,3 +105,5 @@ public:
 		return time;
 	}
 };
+
+} // namespace zbench

@@ -4,6 +4,9 @@
 #include "Results.h"
 #include <sstream>
 
+namespace zbench
+{
+
 class SimpleBench : public Bench
 {
 public:
@@ -15,7 +18,7 @@ public:
 
 	template<typename FixT>
 	SimpleBench(const char* name, void(*func)(FixT&))
-		:Bench(name),
+		: Bench(name),
 		m_exp(Experiment::CreateExperiment_F(func)),
 		m_result(name)
 	{ }
@@ -89,7 +92,7 @@ public:
 
 	virtual void Process(Reporter& reporter) override
 	{
-		for (const Result & result : m_results)
+		for (const Result& result : m_results)
 		{
 			reporter.ProcessResult(result);
 		}
@@ -117,3 +120,6 @@ static std::unique_ptr<Bench> CreateBench_AF(const char* name, void(*func)(const
 {
 	return std::make_unique<ArgsBench<ArgT>>(name, func, std::move(args_vec));
 }
+
+
+} // namespace zbench

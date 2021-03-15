@@ -11,6 +11,9 @@ WALL_WRN_PUSH
 #include "Timer.h"
 WALL_WRN_POP
 
+namespace zbench
+{
+
 class SimpleExperiment;
 template<typename FixT>
 class FixtureExperiment;
@@ -30,14 +33,14 @@ public:
 		auto ret = std::make_shared<SimpleExperiment>(func);
 		return std::static_pointer_cast<Experiment>(ret);
 	}
-	
+
 	template<typename FixT>
 	static std::shared_ptr<Experiment> CreateExperiment_F(void(*func)(FixT&))
 	{
 		return std::make_shared<FixtureExperiment<FixT>>(func);
 	}
 
-	virtual void Run(Result & result) = 0;
+	virtual void Run(Result& result) = 0;
 
 };
 
@@ -48,7 +51,7 @@ private:
 	Timer timer;
 
 public:
-	SimpleExperiment(void(*func)()):
+	SimpleExperiment(void(*func)()) :
 		m_func(std::function<void()>(func))
 	{ }
 
@@ -58,7 +61,7 @@ public:
 	SimpleExperiment& operator= (const SimpleExperiment&) = delete;
 	SimpleExperiment& operator= (SimpleExperiment&&) = delete;
 
-	virtual void Run(Result & result)
+	virtual void Run(Result& result)
 	{
 		auto const f = std::bind(&SimpleExperiment::RunTrial, this);
 		ExperimentUtil::RunExperiment(f, result);
@@ -91,7 +94,7 @@ public:
 	FixtureExperiment& operator= (const FixtureExperiment&) = delete;
 	FixtureExperiment& operator= (FixtureExperiment&&) = delete;
 
-	void Run(Result & result)
+	void Run(Result& result)
 	{
 		auto const f = std::bind(&FixtureExperiment::RunTrial, this);
 		ExperimentUtil::RunExperiment(f, result);
@@ -107,3 +110,5 @@ public:
 		return time;
 	}
 };
+
+} // namespace zbench

@@ -5,9 +5,8 @@
 #include "ArgsExperiment.h"
 #include "Reporter.h"
 
-class SimpleBench;
-template<typename ArgT>
-class ArgsBench;
+namespace zbench
+{
 
 class Bench
 {
@@ -19,12 +18,12 @@ public:
 	Bench& operator = (Bench&&) = delete;
 	virtual ~Bench() = default;
 
-	Bench(const char* name)	:
+	Bench(const char* name) :
 		m_name(name)
 	{}
 
 	virtual void RunTest(Reporter& reporter) = 0;
-	virtual void Process(Reporter & reporter) = 0;
+	virtual void Process(Reporter& reporter) = 0;
 
 	const char* const GetName()
 	{
@@ -34,3 +33,5 @@ public:
 private:
 	const char* m_name;
 };
+
+} // namespace zbench

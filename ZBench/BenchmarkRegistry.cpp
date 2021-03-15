@@ -11,13 +11,16 @@ WALL_WRN_PUSH
 WALL_WRN_POP
 
 
+namespace zbench
+{
+
 void BenchmarkRegistry::Run(const ZBenchOptions& options)
 {
 	BenchmarkRegistry& instance = Instance();
 	instance.privRun(options);
 }
 
-void * BenchmarkRegistry::AddBench(const char* name, void(*func)())
+void* BenchmarkRegistry::AddBench(const char* name, void(*func)())
 {
 	BenchmarkRegistry& instance = Instance();
 	instance.privAddBench(name, func);
@@ -45,9 +48,11 @@ void BenchmarkRegistry::privRun(const ZBenchOptions& options)
 {
 	std::unique_ptr<Reporter> reporter = Reporter::CreateReporter(options.reporter_type);
 	reporter->BeginReport();
-	for (auto & benchmark : m_benchmarks)
+	for (auto& benchmark : m_benchmarks)
 	{
 		benchmark->RunTest(*reporter);
 	}
 	reporter->EndReport();
 }
+
+} // namepspace zbench

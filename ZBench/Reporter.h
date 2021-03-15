@@ -7,6 +7,9 @@ WALL_WRN_POP
 #include "Results.h"
 #include "ReportUtils.h"
 
+namespace zbench
+{
+
 class Reporter
 {
 public:
@@ -76,3 +79,5 @@ private:
 	bool first = true;
 	char pad[7] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g' };
 };
+
+} // namespace zbench

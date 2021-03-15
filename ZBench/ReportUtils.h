@@ -1,13 +1,15 @@
-#ifndef REPORT_UTILS_H
-#define REPORT_UTILS_H
+#pragma once
 
 #include <vector>
 #include "Timer.h"
 
+namespace zbench
+{
+
 struct ReportUtils
 {
 public:
-	static long long GetAverageTime(const std::vector<long long> & sample_times)
+	static long long GetAverageTime(const std::vector<long long>& sample_times)
 	{
 		Timer timer;
 		const float nanos = timer.ToNanoseconds(ReportUtils::GetSampleAverage(sample_times));
@@ -42,4 +44,4 @@ public:
 	}
 };
 
-#endif // !REPORT_UTILS_H
+} // namespace zbench

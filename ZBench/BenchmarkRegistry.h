@@ -5,6 +5,11 @@ WALL_WRN_PUSH
 #include <vector>
 #include <memory>
 WALL_WRN_POP
+#include "BenchImpls.h"
+
+
+namespace zbench
+{
 
 class Bench;
 struct ExperimentArgs;
@@ -19,7 +24,7 @@ public:
 	BenchmarkRegistry& operator = (BenchmarkRegistry&&) = delete;
 	~BenchmarkRegistry() = default;
 
-	static void Run(const ZBenchOptions & options);
+	static void Run(const ZBenchOptions& options);
 	static void* AddBench(const char* name, void(*func)());
 
 	template<typename ArgT>
@@ -54,13 +59,13 @@ private:
 	template<typename FixT>
 	void privAddBench_F(const char* name, void(*func)(FixT&))
 	{
-		m_benchmarks.push_back(Bench::CreateBench_F(name, func));
+		m_benchmarks.push_back(CreateBench_F(name, func));
 	}
 
 	template<typename ArgT>
 	void privAddBench_A(const char* name, void(*func)(const ArgT&), std::vector<ArgT>&& args_vec)
 	{
-		m_benchmarks.push_back(Bench::CreateBench_A(name, func, std::move(args_vec)));
+		m_benchmarks.push_back(CreateBench_A(name, func, std::move(args_vec)));
 	}
 
 	template<typename ArgT, typename FixT>
@@ -73,3 +78,5 @@ private:
 
 	std::vector <std::unique_ptr<Bench>> m_benchmarks;
 };
+
+} // namespace zbench

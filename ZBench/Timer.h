@@ -7,10 +7,13 @@ WALL_WRN_PUSH
 #include <chrono>
 WALL_WRN_POP
 
+namespace zbench
+{
+
 class Timer
 {
 public:
-	Timer():
+	Timer() :
 		tic(),
 		toc(),
 		pad()
@@ -22,7 +25,7 @@ public:
 		(my_period);
 	}
 
-	void Tic() 
+	void Tic()
 	{
 		atomic_thread_fence(std::memory_order_acq_rel);
 		QueryPerformanceCounter(&tic);
@@ -39,7 +42,7 @@ public:
 
 	float ToNanoseconds(long long time_stamp)
 	{
-		return static_cast<float>(time_stamp)* TicksPerNano;
+		return static_cast<float>(time_stamp) * TicksPerNano;
 	}
 
 private:
@@ -49,3 +52,5 @@ private:
 	float TicksPerNano = 0.0f;
 	char pad[4];
 };
+
+} // namspace zbench

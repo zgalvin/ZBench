@@ -5,6 +5,9 @@
 #include "ReportUtils.h"
 #include <cmath>
 
+namespace zbench
+{
+
 struct ExperimentUtil
 {
 public:
@@ -62,7 +65,7 @@ private:
 		return CalcNeededRuns(sample_std_dev, sample_avg, (int)result.sample_times.size());
 	}
 
-	static int CalcNeededRuns(const double & sample_std_dev, const double & sample_avg, const int num_initial_runs)
+	static int CalcNeededRuns(const double& sample_std_dev, const double& sample_avg, const int num_initial_runs)
 	{
 		const double sqrt_est_needed = (critical_val * sample_std_dev) / (error_tolerance * sample_avg);
 		const int est_needed = static_cast<int>(round(sqrt_est_needed * sqrt_est_needed));
@@ -80,3 +83,5 @@ private:
 		return runs_needed;
 	}
 };
+
+} // namespace zbench
