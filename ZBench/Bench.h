@@ -25,13 +25,13 @@ public:
 	virtual void RunTest(Reporter& reporter) = 0;
 	virtual void Process(Reporter& reporter) = 0;
 
-	const char* const GetName()
+	const std::string & GetName() const 
 	{
 		return m_name;
 	}
 
 private:
-	const char* m_name;
+	std::string m_name;
 };
 
 } // namespace zbench

@@ -31,16 +31,8 @@ public:
 class ConsoleReporter : public Reporter
 {
 public:
-	virtual void BeginReport() override
-	{
-		printf("%-*s%*s%*s%*s\n", cellsize, "Name", cellsize, "Avg. Time (ns)", cellsize, "Argument", cellsize, "# iterations");
-	}
-
-	virtual void ProcessResult(const Result& result) override
-	{
-		long long const average_time = ReportUtils::GetAverageTime(result.sample_times);
-		printf("%-*s%*lld%*s%*u\n", cellsize, result.test_name.c_str(), cellsize, average_time, cellsize, result.arg.c_str(), cellsize, (unsigned int)result.sample_times.size());
-	}
+	virtual void BeginReport() override;
+	virtual void ProcessResult(const Result& result) override;
 
 private:
 	const static int cellsize = 20;
@@ -49,31 +41,9 @@ private:
 class JsonReporter : public Reporter
 {
 public:
-	virtual void BeginReport() override
-	{
-		printf("[\r\n");
-	}
-
-	virtual void ProcessResult(const Result& result) override
-	{
-		if (!first)
-			printf("\t,\r\n");
-		else
-			first = false;
-
-		const long long average_time = ReportUtils::GetAverageTime(result.sample_times);
-		printf("\t{\r\n");
-		printf("\t\t\"Test Name\": \"%s\",\r\n", result.test_name.c_str());
-		printf("\t\t\"Arg\": \"%s\",\r\n", result.arg.c_str());
-		printf("\t\t\"Avg. Time (ns)\": %lld,\r\n", average_time);
-		printf("\t\t\"# iterations\": %u\r\n", (unsigned int)result.sample_times.size());
-		printf("\t}\r\n");
-	}
-
-	virtual void EndReport() override
-	{
-		printf("]\r\n");
-	}
+	virtual void BeginReport() override;
+	virtual void ProcessResult(const Result& result) override;
+	virtual void EndReport() override;
 
 private:
 	bool first = true;
