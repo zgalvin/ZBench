@@ -27,12 +27,6 @@ void* BenchmarkRegistry::AddBench(const char* name, void(*func)())
 	return nullptr;
 }
 
-BenchmarkRegistry::BenchmarkRegistry()
-	:m_benchmarks()
-{
-
-}
-
 BenchmarkRegistry& BenchmarkRegistry::Instance()
 {
 	static BenchmarkRegistry instance;

@@ -52,7 +52,7 @@ public:
 	}
 
 private:
-	BenchmarkRegistry();
+	BenchmarkRegistry() = default;
 	static BenchmarkRegistry& Instance();
 	void privAddBench(const char* name, void(*func)());
 

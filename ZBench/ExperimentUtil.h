@@ -16,14 +16,12 @@ public:
 
 	static void RunExperiment(const std::function<long long()>& trial, Result& result)
 	{
-		int num_samples = GetIterationsNeeded(result, trial);
+		int num_samples = EstimateInitialISamplesNeeded(result, trial);
 		do
 		{
 			result.sample_times.reserve((unsigned int)num_samples);
 			for (int i = 0; i < num_samples; ++i)
-			{
 				result.sample_times.push_back(trial());
-			}
 		} while (NeedsMoreIterations(result, num_samples));
 	}
 
@@ -31,15 +29,14 @@ private:
 	static bool NeedsMoreIterations(const Result& result, int& iterations_needed)
 	{
 		const int num_trials = (int)result.sample_times.size();
-		double sample_std_dev;
-		double sample_avg;
-		ReportUtils::GetSampleStdDev(result.sample_times, sample_std_dev, sample_avg);
 
-		const double interval_width = critical_val * (sample_std_dev / sqrt((double)num_trials));
+		const ReportUtils::SampleStats stats = ReportUtils::GetSampleStats(result.sample_times);
 
-		if ((interval_width / sample_avg) > error_tolerance)
+		const double interval_width = critical_val * (stats.std_dev / sqrt((double)num_trials));
+
+		if ((interval_width / stats.average) > error_tolerance)
 		{
-			iterations_needed = CalcNeededRuns(sample_std_dev, sample_avg, num_trials);
+			iterations_needed = CalcNeededSamples(stats, num_trials);
 			return true;
 		}
 		else
@@ -49,31 +46,27 @@ private:
 		}
 	}
 
-	static int GetIterationsNeeded(Result& result, const std::function<long long()>& trial)
+	static int EstimateInitialISamplesNeeded(Result& result, const std::function<long long()>& trial)
 	{
 		constexpr int num_trials = 1024;
 		result.sample_times.reserve(num_trials);
 		for (int i = 0; i < num_trials; ++i)
-		{
 			result.sample_times.push_back(trial());
-		}
 
-		double sample_std_dev;
-		double sample_avg;
-		ReportUtils::GetSampleStdDev(result.sample_times, sample_std_dev, sample_avg);
+		const ReportUtils::SampleStats stats = ReportUtils::GetSampleStats(result.sample_times);
 
-		return CalcNeededRuns(sample_std_dev, sample_avg, (int)result.sample_times.size());
+		return CalcNeededSamples(stats, (int)result.sample_times.size());
 	}
 
-	static int CalcNeededRuns(const double& sample_std_dev, const double& sample_avg, const int num_initial_runs)
+	static int CalcNeededSamples(const ReportUtils::SampleStats & stats, const int num_samples)
 	{
-		const double sqrt_est_needed = (critical_val * sample_std_dev) / (error_tolerance * sample_avg);
+		const double sqrt_est_needed = (critical_val * stats.std_dev) / (error_tolerance * stats.average);
 		const int est_needed = static_cast<int>(round(sqrt_est_needed * sqrt_est_needed));
 
 		int runs_needed = 0;
 
-		if (est_needed > num_initial_runs)
-			runs_needed = est_needed - num_initial_runs;
+		if (est_needed > num_samples)
+			runs_needed = est_needed - num_samples;
 		else
 			runs_needed = est_needed / 10;
 

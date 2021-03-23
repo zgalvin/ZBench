@@ -20,7 +20,7 @@ struct Result
 		Result(test_name_, "n/a")
 	{ }
 
-	Result(const char* const test_name_, const char* const arg_) :
+	Result(const std::string & test_name_, const std::string & arg_) :
 		test_name(test_name_),
 		arg(arg_),
 		sample_times()
