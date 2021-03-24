@@ -7,36 +7,40 @@
 
 namespace zbench
 {
+	struct ExperimentSettings
+	{
+		double critical_val = 1.96;
+		double error_tolerance = 0.005;
+		unsigned int num_initial_samples = 1024u;
+	};
 
 struct ExperimentUtil
 {
 public:
-	static constexpr double critical_val = 1.96;
-	static constexpr double error_tolerance = 0.005;
 
-	static void RunExperiment(const std::function<long long()>& trial, Result& result)
+	static void RunExperiment(const std::function<long long()>& trial, Result& result, const ExperimentSettings & settings)
 	{
-		int num_samples = EstimateInitialISamplesNeeded(result, trial);
+		unsigned int num_samples = settings.num_initial_samples;
 		do
 		{
-			result.sample_times.reserve((unsigned int)num_samples);
-			for (int i = 0; i < num_samples; ++i)
+			result.sample_times.reserve(num_samples);
+			for (unsigned int i = 0; i < num_samples; ++i)
 				result.sample_times.push_back(trial());
-		} while (NeedsMoreIterations(result, num_samples));
+		} while (NeedMoreSamples(result, num_samples, settings));
 	}
 
 private:
-	static bool NeedsMoreIterations(const Result& result, int& iterations_needed)
+	static bool NeedMoreSamples(const Result& result, unsigned int& iterations_needed, const ExperimentSettings& settings)
 	{
 		const int num_trials = (int)result.sample_times.size();
 
 		const ReportUtils::SampleStats stats = ReportUtils::GetSampleStats(result.sample_times);
 
-		const double interval_width = critical_val * (stats.std_dev / sqrt((double)num_trials));
+		const double interval_width = settings.critical_val * (stats.std_dev / sqrt((double)num_trials));
 
-		if ((interval_width / stats.average) > error_tolerance)
+		if ((interval_width / stats.average) > settings.error_tolerance)
 		{
-			iterations_needed = CalcNeededSamples(stats, num_trials);
+			iterations_needed = CalcNeededSamples(stats, num_trials, settings);
 			return true;
 		}
 		else
@@ -46,24 +50,12 @@ private:
 		}
 	}
 
-	static int EstimateInitialISamplesNeeded(Result& result, const std::function<long long()>& trial)
+	static unsigned int CalcNeededSamples(const ReportUtils::SampleStats & stats, const unsigned int num_samples, const ExperimentSettings& settings)
 	{
-		constexpr int num_trials = 1024;
-		result.sample_times.reserve(num_trials);
-		for (int i = 0; i < num_trials; ++i)
-			result.sample_times.push_back(trial());
+		const double sqrt_est_needed = (settings.critical_val * stats.std_dev) / (settings.error_tolerance * stats.average);
+		const unsigned int est_needed = static_cast<int>(round(sqrt_est_needed * sqrt_est_needed));
 
-		const ReportUtils::SampleStats stats = ReportUtils::GetSampleStats(result.sample_times);
-
-		return CalcNeededSamples(stats, (int)result.sample_times.size());
-	}
-
-	static int CalcNeededSamples(const ReportUtils::SampleStats & stats, const int num_samples)
-	{
-		const double sqrt_est_needed = (critical_val * stats.std_dev) / (error_tolerance * stats.average);
-		const int est_needed = static_cast<int>(round(sqrt_est_needed * sqrt_est_needed));
-
-		int runs_needed = 0;
+		unsigned int runs_needed = 0;
 
 		if (est_needed > num_samples)
 			runs_needed = est_needed - num_samples;

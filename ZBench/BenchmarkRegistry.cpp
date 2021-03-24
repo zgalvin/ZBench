@@ -44,7 +44,7 @@ void BenchmarkRegistry::privRun(const ZBenchOptions& options)
 	reporter->BeginReport();
 	for (auto& benchmark : m_benchmarks)
 	{
-		benchmark->RunTest(*reporter);
+		benchmark->RunTest(options.experiment_settings, *reporter);
 	}
 	reporter->EndReport();
 }

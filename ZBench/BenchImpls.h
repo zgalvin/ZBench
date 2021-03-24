@@ -23,9 +23,9 @@ public:
 		m_result(name)
 	{ }
 
-	virtual void RunTest(Reporter& reporter) override
+	virtual void RunTest(const ExperimentSettings& settings, Reporter& reporter) override
 	{
-		m_exp->Run(m_result);
+		m_exp->Run(settings, m_result);
 		reporter.ProcessResult(m_result);
 	}
 
@@ -76,15 +76,15 @@ public:
 		m_results.reserve(m_args.size());
 	}
 
-	virtual void RunTest(Reporter& reporter) override
+	virtual void RunTest(const ExperimentSettings& settings, Reporter& reporter) override
 	{
 		for (auto arg : m_args)
 		{
 			std::ostringstream os;
 			os << arg;
 
-			Result result(GetName(), os.str().c_str());
-			m_exp->Run(arg, result);
+			Result result(GetName(), os.str());
+			m_exp->Run(settings, arg, result);
 			reporter.ProcessResult(result);
 			m_results.push_back(std::move(result));
 		}

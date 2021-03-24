@@ -36,7 +36,7 @@ public:
 		return std::make_unique<FixtureArgsExperiment<ArgT, FixT>>(func);
 	}
 
-	virtual void Run(const ArgT& arg, Result& result) = 0;
+	virtual void Run(const ExperimentSettings& settings, const ArgT& arg, Result& result) = 0;
 };
 
 template<typename ArgT>
@@ -56,10 +56,10 @@ public:
 	SimpleArgsExperiment& operator= (const SimpleArgsExperiment&) = delete;
 	SimpleArgsExperiment& operator= (SimpleArgsExperiment&&) = delete;
 
-	virtual void Run(const ArgT& arg, Result& result) override
+	virtual void Run(const ExperimentSettings& settings, const ArgT& arg, Result& result) override
 	{
 		auto f = std::bind(&SimpleArgsExperiment::RunTrial, this, arg);
-		ExperimentUtil::RunExperiment(f, result);
+		ExperimentUtil::RunExperiment(f, result, settings);
 	}
 
 	long long RunTrial(const ArgT& arg)
@@ -83,16 +83,17 @@ public:
 	{
 
 	}
+
 	virtual ~FixtureArgsExperiment() = default;
 	FixtureArgsExperiment(const FixtureArgsExperiment&) = delete;
 	FixtureArgsExperiment(FixtureArgsExperiment&&) = delete;
 	FixtureArgsExperiment& operator= (const FixtureArgsExperiment&) = delete;
 	FixtureArgsExperiment& operator= (FixtureArgsExperiment&&) = delete;
 
-	virtual void Run(const ArgT& arg, Result& result) override
+	virtual void Run(const ExperimentSettings& settings, const ArgT& arg, Result& result) override
 	{
 		const auto f = std::bind(&FixtureArgsExperiment::RunTrial, this, arg);
-		ExperimentUtil::RunExperiment(f, result);
+		ExperimentUtil::RunExperiment(f, result, settings);
 	}
 
 	long long RunTrial(const ArgT& arg)

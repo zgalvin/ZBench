@@ -22,7 +22,7 @@ public:
 		m_name(name)
 	{}
 
-	virtual void RunTest(Reporter& reporter) = 0;
+	virtual void RunTest(const ExperimentSettings& settings, Reporter& reporter) = 0;
 	virtual void Process(Reporter& reporter) = 0;
 
 	const std::string & GetName() const 

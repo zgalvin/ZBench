@@ -40,7 +40,7 @@ public:
 		return std::make_shared<FixtureExperiment<FixT>>(func);
 	}
 
-	virtual void Run(Result& result) = 0;
+	virtual void Run(const ExperimentSettings& settings, Result& result) = 0;
 
 };
 
@@ -49,7 +49,6 @@ class SimpleExperiment : public Experiment
 private:
 	std::function<void()> m_func;
 	Timer timer;
-
 public:
 	SimpleExperiment(void(*func)()) :
 		m_func(std::function<void()>(func))
@@ -61,10 +60,10 @@ public:
 	SimpleExperiment& operator= (const SimpleExperiment&) = delete;
 	SimpleExperiment& operator= (SimpleExperiment&&) = delete;
 
-	virtual void Run(Result& result)
+	virtual void Run(const ExperimentSettings & settings, Result& result)
 	{
 		auto const f = std::bind(&SimpleExperiment::RunTrial, this);
-		ExperimentUtil::RunExperiment(f, result);
+		ExperimentUtil::RunExperiment(f, result, settings);
 	}
 
 	long long RunTrial()
@@ -94,10 +93,10 @@ public:
 	FixtureExperiment& operator= (const FixtureExperiment&) = delete;
 	FixtureExperiment& operator= (FixtureExperiment&&) = delete;
 
-	void Run(Result& result)
+	void Run(const ExperimentSettings& settings, Result& result)
 	{
 		auto const f = std::bind(&FixtureExperiment::RunTrial, this);
-		ExperimentUtil::RunExperiment(f, result);
+		ExperimentUtil::RunExperiment(f, result, settings);
 	}
 
 	long long RunTrial()
