@@ -24,13 +24,13 @@ void ConsoleReporter::BeginReport()
 		cellsize, "# iterations");
 }
 
-void ConsoleReporter::ProcessResult(const Result& result)
+void ConsoleReporter::ProcessResult(const ExperimentInfo & info, const Result& result)
 {
 	long long const average_time = ReportUtils::GetAverageTime(result.sample_times);
 	printf("%-*s%*lld%*s%*u\n", 
-		cellsize, result.test_name.c_str(), 
+		cellsize, info.test_name.c_str(), 
 		cellsize, average_time, cellsize, 
-		result.arg.c_str(), cellsize, 
+		info.arg.c_str(), cellsize,
 		(unsigned int)result.sample_times.size());
 }
 
@@ -40,7 +40,7 @@ void JsonReporter::BeginReport()
 	first = true;
 }
 
-void JsonReporter::ProcessResult(const Result& result)
+void JsonReporter::ProcessResult(const ExperimentInfo& info, const Result& result)
 {
 	if (!first)
 		printf("\t,\r\n");
@@ -49,8 +49,8 @@ void JsonReporter::ProcessResult(const Result& result)
 
 	const long long average_time = ReportUtils::GetAverageTime(result.sample_times);
 	printf("\t{\r\n");
-	printf("\t\t\"Test Name\": \"%s\",\r\n", result.test_name.c_str());
-	printf("\t\t\"Arg\": \"%s\",\r\n", result.arg.c_str());
+	printf("\t\t\"Test Name\": \"%s\",\r\n", info.test_name.c_str());
+	printf("\t\t\"Arg\": \"%s\",\r\n", info.arg.c_str());
 	printf("\t\t\"Avg. Time (ns)\": %lld,\r\n", average_time);
 	printf("\t\t\"# iterations\": %u\r\n", (unsigned int)result.sample_times.size());
 	printf("\t}\r\n");

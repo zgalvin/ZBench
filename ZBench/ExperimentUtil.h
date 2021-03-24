@@ -18,8 +18,9 @@ struct ExperimentUtil
 {
 public:
 
-	static void RunExperiment(const std::function<long long()>& trial, Result& result, const ExperimentSettings & settings)
+	static Result RunExperiment(const std::function<long long()>& trial, const ExperimentSettings & settings)
 	{
+		Result result;
 		unsigned int num_samples = settings.num_initial_samples;
 		do
 		{
@@ -27,6 +28,7 @@ public:
 			for (unsigned int i = 0; i < num_samples; ++i)
 				result.sample_times.push_back(trial());
 		} while (NeedMoreSamples(result, num_samples, settings));
+		return result;
 	}
 
 private:

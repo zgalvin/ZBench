@@ -23,14 +23,13 @@ public:
 	{}
 
 	virtual void RunTest(const ExperimentSettings& settings, Reporter& reporter) = 0;
-	virtual void Process(Reporter& reporter) = 0;
 
 	const std::string & GetName() const 
 	{
 		return m_name;
 	}
 
-private:
+protected:
 	std::string m_name;
 };
 

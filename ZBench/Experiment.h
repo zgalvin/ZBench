@@ -40,7 +40,7 @@ public:
 		return std::make_shared<FixtureExperiment<FixT>>(func);
 	}
 
-	virtual void Run(const ExperimentSettings& settings, Result& result) = 0;
+	virtual Result Run(const ExperimentSettings& settings) = 0;
 
 };
 
@@ -60,10 +60,10 @@ public:
 	SimpleExperiment& operator= (const SimpleExperiment&) = delete;
 	SimpleExperiment& operator= (SimpleExperiment&&) = delete;
 
-	virtual void Run(const ExperimentSettings & settings, Result& result)
+	virtual Result Run(const ExperimentSettings & settings) override
 	{
 		auto const f = std::bind(&SimpleExperiment::RunTrial, this);
-		ExperimentUtil::RunExperiment(f, result, settings);
+		return ExperimentUtil::RunExperiment(f, settings);
 	}
 
 	long long RunTrial()
@@ -93,10 +93,10 @@ public:
 	FixtureExperiment& operator= (const FixtureExperiment&) = delete;
 	FixtureExperiment& operator= (FixtureExperiment&&) = delete;
 
-	void Run(const ExperimentSettings& settings, Result& result)
+	virtual Result Run(const ExperimentSettings& settings) override
 	{
 		auto const f = std::bind(&FixtureExperiment::RunTrial, this);
-		ExperimentUtil::RunExperiment(f, result, settings);
+		return ExperimentUtil::RunExperiment(f, settings);
 	}
 
 	long long RunTrial()
