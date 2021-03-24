@@ -16,18 +16,26 @@ namespace zbench
 
 void BenchmarkRegistry::Run(const ZBenchOptions& options)
 {
-	BenchmarkRegistry& instance = Instance();
-	instance.privRun(options);
+	BenchmarkRegistry::Run(options, getDefaultRegistry());
 }
 
 void* BenchmarkRegistry::AddBench(const char* name, void(*func)())
 {
-	BenchmarkRegistry& instance = Instance();
-	instance.privAddBench(name, func);
+	return BenchmarkRegistry::AddBench(name, func, getDefaultRegistry());
+}
+
+void BenchmarkRegistry::Run(const ZBenchOptions& options, BenchmarkRegistry& registry)
+{
+	registry.privRun(options);
+}
+
+void* BenchmarkRegistry::AddBench(const char* name, void(*func)(), BenchmarkRegistry& registry)
+{
+	registry.privAddBench(name, func);
 	return nullptr;
 }
 
-BenchmarkRegistry& BenchmarkRegistry::Instance()
+BenchmarkRegistry& BenchmarkRegistry::getDefaultRegistry()
 {
 	static BenchmarkRegistry instance;
 	return instance;
