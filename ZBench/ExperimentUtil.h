@@ -2,7 +2,7 @@
 
 #include <functional>
 #include "Results.h"
-#include "ReportUtils.h"
+#include "StatUtils.h"
 #include <cmath>
 
 namespace zbench
@@ -36,7 +36,7 @@ private:
 	{
 		const int num_trials = (int)result.sample_times.size();
 
-		const ReportUtils::SampleStats stats = ReportUtils::GetSampleStats(result.sample_times);
+		const StatUtils::SampleStats stats = StatUtils::GetSampleStats(result.sample_times);
 
 		const double interval_width = settings.critical_val * (stats.std_dev / sqrt((double)num_trials));
 
@@ -52,7 +52,7 @@ private:
 		}
 	}
 
-	static unsigned int CalcNeededSamples(const ReportUtils::SampleStats & stats, const unsigned int num_samples, const ExperimentSettings& settings)
+	static unsigned int CalcNeededSamples(const StatUtils::SampleStats & stats, const unsigned int num_samples, const ExperimentSettings& settings)
 	{
 		const double sqrt_est_needed = (settings.critical_val * stats.std_dev) / (settings.error_tolerance * stats.average);
 		const unsigned int est_needed = static_cast<int>(round(sqrt_est_needed * sqrt_est_needed));

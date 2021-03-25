@@ -77,14 +77,14 @@
     <ClInclude Include="ZBench.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="ReportUtils.h">
-      <Filter>Source Files\Report</Filter>
-    </ClInclude>
     <ClInclude Include="Reporter.h">
       <Filter>Source Files\Report</Filter>
     </ClInclude>
     <ClInclude Include="Results.h">
       <Filter>Source Files\Experiment</Filter>
+    </ClInclude>
+    <ClInclude Include="StatUtils.h">
+      <Filter>Source Files\Util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,29 +1,18 @@
 #pragma once
 
 #include <vector>
+#include <numeric>
 #include "Timer.h"
 
 namespace zbench
 {
 
-namespace ReportUtils
+namespace StatUtils
 {
-	static long long GetSampleAverage(const std::vector<long long>& sample_times)
+	template <typename T>
+	static long long GetSampleAverage(const std::vector<T>& sample_times)
 	{
-		long long total = 0;
-		for (long long const time : sample_times)
-		{
-			total += time;
-		}
-
-		return total / (long long)sample_times.size();
-	}
-
-	static long long GetAverageTime(const std::vector<long long>& sample_times)
-	{
-		Timer timer;
-		const float nanos = timer.ToNanoseconds(ReportUtils::GetSampleAverage(sample_times));
-		return static_cast<long long>(nanos);
+		return std::accumulate(sample_times.cbegin(), sample_times.cend(), T(0)) / sample_times.size();
 	}
 
 	struct SampleStats
@@ -37,7 +26,7 @@ namespace ReportUtils
 		SampleStats result;
 
 		const double x = 1 / (double)(sample_times.size() - 1);
-		result.average = static_cast<double>(ReportUtils::GetSampleAverage(sample_times));
+		result.average = static_cast<double>(StatUtils::GetSampleAverage(sample_times));
 
 		double variance = 0.0;
 		for (const long long time : sample_times)

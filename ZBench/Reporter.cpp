@@ -3,6 +3,13 @@
 namespace zbench
 {
 
+static long long GetAverageTime(const std::vector<long long>& sample_times)
+{
+	Timer timer;
+	const float nanos = timer.ToNanoseconds(StatUtils::GetSampleAverage(sample_times));
+	return static_cast<long long>(nanos);
+}
+
 std::unique_ptr<Reporter> Reporter::CreateReporter(const Type type)
 {
 	std::unique_ptr<Reporter> retVal = std::make_unique<JsonReporter>();
@@ -26,7 +33,7 @@ void ConsoleReporter::BeginReport()
 
 void ConsoleReporter::ProcessResult(const ExperimentInfo & info, const Result& result)
 {
-	long long const average_time = ReportUtils::GetAverageTime(result.sample_times);
+	long long const average_time = GetAverageTime(result.sample_times);
 	printf("%-*s%*lld%*s%*u\n", 
 		cellsize, info.test_name.c_str(), 
 		cellsize, average_time, cellsize, 
@@ -47,7 +54,7 @@ void JsonReporter::ProcessResult(const ExperimentInfo& info, const Result& resul
 	else
 		first = false;
 
-	const long long average_time = ReportUtils::GetAverageTime(result.sample_times);
+	const long long average_time = GetAverageTime(result.sample_times);
 	printf("\t{\r\n");
 	printf("\t\t\"Test Name\": \"%s\",\r\n", info.test_name.c_str());
 	printf("\t\t\"Arg\": \"%s\",\r\n", info.arg.c_str());

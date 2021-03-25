@@ -5,7 +5,7 @@ WALL_WRN_PUSH
 #include <memory>
 WALL_WRN_POP
 #include "Results.h"
-#include "ReportUtils.h"
+#include "StatUtils.h"
 
 namespace zbench
 {

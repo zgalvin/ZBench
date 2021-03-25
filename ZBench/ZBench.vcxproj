@@ -214,11 +214,11 @@
     <ClInclude Include="Experiment.h" />
     <ClInclude Include="ExperimentUtil.h" />
     <ClInclude Include="PlatformDefinitions.h" />
+    <ClInclude Include="StatUtils.h" />
     <ClInclude Include="ZBench.h" />
     <ClInclude Include="ZBenchOptions.h" />
     <ClInclude Include="ZBenchUtils.h" />
     <ClInclude Include="Reporter.h" />
-    <ClInclude Include="ReportUtils.h" />
     <ClInclude Include="Results.h" />
     <ClInclude Include="RunExperiment.h" />
     <ClInclude Include="Timer.h" />
