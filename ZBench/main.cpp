@@ -40,9 +40,9 @@ void bubble_sort(const size_t& arg, SortFixture& fix)
 	{
 		for (unsigned int y = 0; y < arg - 1; y++)
 		{
-			if (fix.data[y] > fix.data[y + 1])
+			if (fix.data[y] > fix.data[(size_t)y + 1])
 			{
-				std::swap(fix.data[y], fix.data[y + 1]);
+				std::swap(fix.data[y], fix.data[(size_t)y + 1]);
 			}
 		}
 	}
