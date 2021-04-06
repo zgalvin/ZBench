@@ -10,7 +10,7 @@ namespace zbench
 namespace StatUtils
 {
 	template <typename T>
-	static long long GetSampleAverage(const std::vector<T>& sample_times)
+	static inline long long GetSampleAverage(const std::vector<T>& sample_times)
 	{
 		return std::accumulate(sample_times.cbegin(), sample_times.cend(), T(0)) / sample_times.size();
 	}
@@ -21,7 +21,7 @@ namespace StatUtils
 		double std_dev;
 	};
 
-	static SampleStats GetSampleStats(const std::vector<long long>& sample_times)
+	static inline SampleStats GetSampleStats(const std::vector<long long>& sample_times)
 	{
 		SampleStats result;
 

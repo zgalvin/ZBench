@@ -5,9 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="_Framework">
-      <UniqueIdentifier>{f04c9286-e219-4fb7-b306-f9717e9aba86}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Benchmark">
       <UniqueIdentifier>{63389c5a-de07-45cf-9377-879ea1067ade}</UniqueIdentifier>
     </Filter>
@@ -33,14 +30,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Framework\__DO NOT MODIFY__">
-      <Filter>_Framework</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\Framework\Framework.h">
-      <Filter>_Framework</Filter>
-    </ClInclude>
     <ClInclude Include="Experiment.h">
       <Filter>Source Files\Experiment</Filter>
     </ClInclude>

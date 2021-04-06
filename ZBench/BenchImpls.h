@@ -37,13 +37,13 @@ public:
 	virtual ~SimpleBench() = default;
 };
 
-static std::unique_ptr<Bench> CreateBench(const char* name, void(*func)())
+static inline std::unique_ptr<Bench> CreateBench(const char* name, void(*func)())
 {
 	return std::make_unique<SimpleBench>(name, func);
 }
 
 template<typename FixT>
-static std::unique_ptr<Bench> CreateBench_F(const char* name, void(*func)(FixT&))
+static inline std::unique_ptr<Bench> CreateBench_F(const char* name, void(*func)(FixT&))
 {
 	return std::make_unique<SimpleBench>(name, func);
 }
@@ -90,13 +90,13 @@ private:
 };
 
 template<typename ArgT>
-static std::unique_ptr<Bench> CreateBench_A(const char* name, void(*func)(const ArgT&), std::vector<ArgT>&& args_vec)
+static inline std::unique_ptr<Bench> CreateBench_A(const char* name, void(*func)(const ArgT&), std::vector<ArgT>&& args_vec)
 {
 	return std::make_unique<ArgsBench<ArgT>>(name, func, std::move(args_vec));
 }
 
 template<typename ArgT, typename FixT>
-static std::unique_ptr<Bench> CreateBench_AF(const char* name, void(*func)(const ArgT&, FixT&), std::vector<ArgT>&& args_vec)
+static inline std::unique_ptr<Bench> CreateBench_AF(const char* name, void(*func)(const ArgT&, FixT&), std::vector<ArgT>&& args_vec)
 {
 	return std::make_unique<ArgsBench<ArgT>>(name, func, std::move(args_vec));
 }

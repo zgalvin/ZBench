@@ -15,14 +15,13 @@ class Timer
 public:
 	Timer() :
 		tic(),
-		toc(),
-		pad()
+		toc()
 	{
 		LARGE_INTEGER freq;
 		QueryPerformanceFrequency(&freq);
 		TicksPerNano = 1000000000.0f / static_cast<float>(freq.QuadPart);
-		constexpr auto my_period = (double)std::chrono::high_resolution_clock::period::num / (double)std::chrono::high_resolution_clock::period::den;
-		(my_period);
+		//constexpr auto my_period = (double)std::chrono::high_resolution_clock::period::num / (double)std::chrono::high_resolution_clock::period::den;
+		//(my_period);
 	}
 
 	void Tic()
@@ -50,7 +49,6 @@ private:
 	LARGE_INTEGER toc;
 
 	float TicksPerNano = 0.0f;
-	char pad[4];
 };
 
 } // namspace zbench

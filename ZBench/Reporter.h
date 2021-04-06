@@ -47,7 +47,6 @@ public:
 
 private:
 	bool first = true;
-	char pad[7] = { 'a', 'b', 'c', 'd', 'e', 'f', 'g' };
 };
 
 } // namespace zbench

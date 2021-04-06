@@ -11,10 +11,10 @@ static bool StrMatches(const char* const str1, const char* const str2)
 	return strcmp(str1, str2) == 0;
 }
 
-static bool StrMatches(const char* const str1, const char* const str2, const char* const strs...)
-{
-	StrMatches(str1, str2);
-}
+//static bool StrMatches(const char* const str1, const char* const str2, const char* const strs...)
+//{
+//	StrMatches(str1, str2);
+//}
 
 static ZBenchOptions ParseArgs(const int argc, const char* const argv[])
 {
