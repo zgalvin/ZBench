@@ -62,7 +62,7 @@ public:
 		return ExperimentUtil::RunExperiment(f, settings);
 	}
 
-	long long RunTrial(const ArgT& arg)
+	auto RunTrial(const ArgT& arg)
 	{
 		timer.Tic();
 		m_func(arg);
@@ -96,12 +96,12 @@ public:
 		return ExperimentUtil::RunExperiment(f, settings);
 	}
 
-	long long RunTrial(const ArgT& arg)
+	auto RunTrial(const ArgT& arg)
 	{
 		m_fix.Setup(arg);
 		timer.Tic();
 		m_func(arg, m_fix);
-		const long long time = timer.Toc();
+		const auto time = timer.Toc();
 		m_fix.Teardown();
 		return time;
 	}

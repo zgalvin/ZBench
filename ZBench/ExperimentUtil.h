@@ -18,7 +18,7 @@ struct ExperimentUtil
 {
 public:
 
-	static Result RunExperiment(const std::function<long long()>& trial, const ExperimentSettings & settings)
+	static Result RunExperiment(const std::function<Timer::Duration()>& trial, const ExperimentSettings & settings)
 	{
 		Result result;
 		unsigned int num_samples = settings.num_initial_samples;

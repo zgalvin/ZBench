@@ -1,6 +1,7 @@
 #pragma once
 
 #include "PlatformDefinitions.h"
+#include "Timer.h"
 WALL_WRN_PUSH
 #include <vector>
 #include <string>
@@ -33,7 +34,7 @@ struct ExperimentInfo
 
 struct Result
 {
-	std::vector<long long> sample_times;
+	std::vector<Timer::Duration> sample_times;
 
 	Result() = default;
 	Result(Result const&) noexcept = default;

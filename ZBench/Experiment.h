@@ -66,7 +66,7 @@ public:
 		return ExperimentUtil::RunExperiment(f, settings);
 	}
 
-	long long RunTrial()
+	Timer::Duration RunTrial()
 	{
 		timer.Tic();
 		m_func();
@@ -99,7 +99,7 @@ public:
 		return ExperimentUtil::RunExperiment(f, settings);
 	}
 
-	long long RunTrial()
+	Timer::Duration RunTrial()
 	{
 		m_fix.Setup();
 		timer.Tic();

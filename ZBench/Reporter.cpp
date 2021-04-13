@@ -3,10 +3,10 @@
 namespace zbench
 {
 
-static long long GetAverageTime(const std::vector<long long>& sample_times)
+static long long GetAverageTime(const std::vector<Timer::Duration>& sample_times)
 {
 	Timer timer;
-	const float nanos = timer.ToNanoseconds(StatUtils::GetSampleAverage(sample_times));
+	const auto nanos = timer.ToNanoseconds(StatUtils::GetSampleAverage(sample_times));
 	return static_cast<long long>(nanos);
 }
 
