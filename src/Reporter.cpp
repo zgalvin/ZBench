@@ -1,4 +1,4 @@
-#include "Reporter.h"
+#include <zbench/Reporter.h>
 
 namespace zbench
 {
