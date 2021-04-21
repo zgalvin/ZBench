@@ -1,9 +1,6 @@
-#include "PlatformDefinitions.h"
-WALL_WRN_PUSH
-#include <chrono>
 #include <random>
 #include "ZBench.h"
-WALL_WRN_POP
+#include "BenchmarkRegistry.h"
 
 ZBENCH_MAIN
 

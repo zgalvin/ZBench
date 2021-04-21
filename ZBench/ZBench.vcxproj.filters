@@ -22,9 +22,6 @@
     <ClCompile Include="BenchmarkRegistry.cpp">
       <Filter>Source Files\Benchmark</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Reporter.cpp">
       <Filter>Source Files\Report</Filter>
     </ClCompile>
