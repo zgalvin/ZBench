@@ -11,7 +11,7 @@ ZBENCH_MAIN
 ```
 
 ##Build Instructions
-
+Requires git, CMake 3.0.0 or greater, and a C++ compiler that supports at least C++11. 
 ```bash
 git clone https://github.com/zgalvin/ZBench.git
 
@@ -21,3 +21,7 @@ cmake -S .. -B .
 
 cmake --build .
 ```
+
+##Usage
+
+Coming soon.
