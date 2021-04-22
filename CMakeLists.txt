@@ -8,15 +8,12 @@ project(ZBench
 add_library(ZBench STATIC)
 target_sources(ZBench PUBLIC 
 	include/zbench/ArgsExperiment.h 
-	include/zbench/ExperimentArgs.h 
 	include/zbench/Results.h 
 	include/zbench/ZBench.h 
 	include/zbench/Bench.h 
-	include/zbench/ExperimentUtil.h 
-	include/zbench/RunExperiment.h 
+	include/zbench/ExperimentUtil.h  
 	include/zbench/ZBenchOptions.h 
 	include/zbench/BenchImpls.h 
-	include/zbench/Fixture.h 
 	include/zbench/StatUtils.h 
 	include/zbench/ZBenchUtils.h 
 	include/zbench/BenchmarkRegistry.h 
