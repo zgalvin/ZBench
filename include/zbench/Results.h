@@ -1,11 +1,8 @@
 #pragma once
 
-#include "PlatformDefinitions.h"
 #include "Timer.h"
-WALL_WRN_PUSH
 #include <vector>
 #include <string>
-WALL_WRN_POP
 
 namespace zbench
 {

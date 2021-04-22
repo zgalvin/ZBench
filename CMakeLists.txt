@@ -17,11 +17,9 @@ target_sources(ZBench PUBLIC
 	include/zbench/StatUtils.h 
 	include/zbench/ZBenchUtils.h 
 	include/zbench/BenchmarkRegistry.h 
-	include/zbench/PlatformDefinitions.h 
 	include/zbench/Timer.h 
 	include/zbench/Experiment.h 
 	include/zbench/Reporter.h 
-	include/zbench/Trial.h
 )
 target_sources(ZBench PRIVATE
 	src/BenchmarkRegistry.cpp 

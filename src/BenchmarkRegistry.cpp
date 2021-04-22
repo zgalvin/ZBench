@@ -1,14 +1,11 @@
 #include <zbench/BenchmarkRegistry.h>
 
-#include <zbench/PlatformDefinitions.h>
-WALL_WRN_PUSH
 #include <functional>
 #include <zbench/Bench.h>
 #include <zbench/BenchImpls.h>
 #include <zbench/Experiment.h>
 #include <zbench/Reporter.h>
 #include <zbench/ZBenchOptions.h>
-WALL_WRN_POP
 
 
 namespace zbench

@@ -1,11 +1,7 @@
 #pragma once
 
-#include "PlatformDefinitions.h"
-WALL_WRN_PUSH
-//#include <Windows.h>
 #include <atomic>
 #include <chrono>
-WALL_WRN_POP
 
 namespace zbench
 {

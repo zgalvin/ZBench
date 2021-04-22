@@ -1,7 +1,5 @@
 #pragma once
 
-#include "PlatformDefinitions.h"
-WALL_WRN_PUSH
 #include <chrono>
 #include <vector>
 #include <functional>
@@ -9,7 +7,6 @@ WALL_WRN_PUSH
 #include "ExperimentUtil.h"
 #include "Results.h"
 #include "Timer.h"
-WALL_WRN_POP
 
 namespace zbench
 {

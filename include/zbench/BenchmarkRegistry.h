@@ -1,10 +1,7 @@
 #pragma once
 
-#include "PlatformDefinitions.h"
-WALL_WRN_PUSH
 #include <vector>
 #include <memory>
-WALL_WRN_POP
 #include "BenchImpls.h"
 
 
